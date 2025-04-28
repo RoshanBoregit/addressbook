@@ -1,30 +1,30 @@
 pipeline {
     agent any
 
-parameters{
-string{name: 'env', defaultValue: 'test',description:'env to compile'}
-}
+    parameters {
+        string(name: 'env', defaultValue: 'test', description: 'Environment to compile')
+    }
 
     stages {
-        stage('compile') {
+        stage('Compile') {
             steps {
-                script{
-                    echo "compile Hello World"
-echo "compile in env: ${params.env}"
+                script {
+                    echo "Compiling Hello World"
+                    echo "Compiling in environment: ${params.env}"
                 }
             }
         }
-       stage('test') {
+        stage('Test') {
             steps {
-                script{
-                    echo "test-Hello World"
+                script {
+                    echo "Testing Hello World"
                 }
             }
         }
-         stage('package') {
+        stage('Package') {
             steps {
-                script{
-                    echo " package-Hello World"
+                script {
+                    echo "Packaging Hello World"
                 }
             }
         }
