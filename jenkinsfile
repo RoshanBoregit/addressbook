@@ -3,6 +3,8 @@ pipeline {
 
     parameters {
         string(name: 'env', defaultValue: 'test', description: 'Environment to compile')
+        booleanParam(name: 'executiontests', defaultValue: true, description: 'decide to run tc')
+        choice(name: 'APPVERSION', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
 
     stages {
