@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     parameters {
         string(name: 'env', defaultValue: 'test', description: 'Environment to compile')
@@ -9,6 +9,7 @@ pipeline {
 
     stages {
         stage('Compile') {
+        agent any
             steps {
                 echo "Compiling Hello World"
                 echo "Compiling in environment: ${params.env}"
@@ -17,6 +18,7 @@ pipeline {
         }
 
         stage('Test') {
+        agent any
             when {
                 expression { return params.executiontests }
             }
@@ -27,6 +29,7 @@ pipeline {
         }
 
         stage('Package') {
+        agent {label 'roshan_slave'} 
             steps {
                 echo "Packaging Hello World"
                 sh "mvn package"
@@ -34,6 +37,7 @@ pipeline {
         }
 
         stage('Deploy') {
+        agent any
             steps {
                 script {
                     def userInput = input(
