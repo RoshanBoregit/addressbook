@@ -492,19 +492,5 @@
         </profile>
     </profiles>
 
-</project>
-<build>
-    <plugins>
-        <!-- Existing plugins like maven-compiler-plugin, jetty-maven-plugin, maven-surefire-plugin -->
-
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.2</version> <!-- Upgraded version -->
-        </plugin>
-
-    </plugins>
-    <finalName>addressbook</finalName>
-</build>
 
 
