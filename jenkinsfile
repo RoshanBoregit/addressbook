@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo "Compiling Hello World"
                 echo "Compiling in environment: ${params.env}"
+                sh "mvn compile"
             }
         }
 
@@ -21,12 +22,14 @@ pipeline {
             }
             steps {
                 echo "Testing Hello World"
+                sh "mvn test"
             }
         }
 
         stage('Package') {
             steps {
                 echo "Packaging Hello World"
+                sh "mvn package"
             }
         }
 
