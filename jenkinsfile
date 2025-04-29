@@ -3,30 +3,44 @@ pipeline {
 
     parameters {
         string(name: 'env', defaultValue: 'test', description: 'Environment to compile')
-        booleanParam(name: 'executiontests', defaultValue: true, description: 'decide to run tc')
+        booleanParam(name: 'executiontests', defaultValue: true, description: 'Decide whether to run tests')
         choice(name: 'APPVERSION', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
 
     stages {
         stage('Compile') {
             steps {
-                script {
-                    echo "Compiling Hello World"
-                    echo "Compiling in environment: ${params.env}"
-                }
+                echo "Compiling Hello World"
+                echo "Compiling in environment: ${params.env}"
             }
         }
+
         stage('Test') {
+            when {
+                expression { return params.executiontests }
+            }
             steps {
-                script {
-                    echo "Testing Hello World"
-                }
+                echo "Testing Hello World"
             }
         }
+
         stage('Package') {
             steps {
+                echo "Packaging Hello World"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
                 script {
-                    echo "Packaging Hello World"
+                    def userInput = input(
+                        message: 'Select the version to deploy',
+                        ok: 'Deploy',
+                        parameters: [
+                            choice(name: 'NEWVERSION', choices: ['1', '2', '3'], description: 'Choose deployment version')
+                        ]
+                    )
+                    echo "Deploying version: ${userInput}"
                 }
             }
         }
