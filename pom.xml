@@ -493,3 +493,13 @@
     </profiles>
 
 </project>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version> <!-- Upgrade from 2.2 to 3.3.2 -->
+        </plugin>
+    </plugins>
+</build>
